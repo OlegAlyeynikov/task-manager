@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+  <div class="container">
+    <div class="row centered">
+      <div class="text-center">
+        <h1><i class="fa fa-trophy">Delete task?</i></h1>
+        <p><i class="fa fa-trophy">Are you sure you want to delete the task?</i></p>
+        <i class="fa fa-trophy">
+        <form action="" method="post">
+          {% csrf_token %}
+          <input type="submit" value="Yes" class="btn btn-danger">
+          <a href="{% url 'task_manager:task-list' %}" class="btn btn-danger">No</a>
+        </form>
+      </i>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}
