@@ -2,6 +2,17 @@
 
 Django project for managing tasks for small company or department.
 
+## Description
+
+This application is designed for companies or departments with a small number of employees. 
+The application allows you to control the process of execution and deadline tasks. 
+Intuitive sorting and searching will enable you to quickly find the required task and make changes.
+
+The application does not provide for user registration, 
+the password is issued by the administrator when the user becomes an employee of the company. 
+Since this application is a demo, access keys are issued. 
+The username will be a lowercase string of the user's first and last name separated by a dot.
+
 ## Check it out!
 
 """the project is being developed"""
@@ -17,7 +28,9 @@ Django project for managing tasks for small company or department.
 
 ## Demo
 
-![Website Interface](task_manager_screen.png)
+![Website Interface](demo_images/task_login.png)
+![Website Interface](demo_images/task_list.png)
+![Website Interface](demo_images/task_detail.png)
 
 ## Installation
 

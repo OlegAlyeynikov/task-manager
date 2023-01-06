@@ -18,6 +18,14 @@ class LogoutView(View):
         return redirect("account_login")
 
 
+class WorkerListView(LoginRequiredMixin, generic.ListView):
+    model = Worker
+    template_name = "task_manager/worker_list.html"
+    context_object_name = "worker_list"
+    paginate_by = 40
+    queryset = Worker.objects.all()
+
+
 class TaskListView(LoginRequiredMixin, generic.ListView):
     model = Task
     paginate_by = 40
@@ -96,15 +104,3 @@ def toggle_assign_to_task(request, pk):
     else:
         worker.tasks.add(pk)
     return HttpResponseRedirect(reverse_lazy("task_manager:task-detail", args=[pk]))
-
-
-class WorkerListView(LoginRequiredMixin, generic.ListView):
-    model = Worker
-    template_name = "task_manager/worker_list.html"
-    context_object_name = "worker_list"
-    paginate_by = 40
-    queryset = Worker.objects.all()
-
-
-class WorkerDetailView(LoginRequiredMixin, generic.DetailView):
-    model = Worker
