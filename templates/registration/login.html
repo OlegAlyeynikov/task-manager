@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+  <div class="container">
+    {% if user.is_authenticated %}
+      {% include "task_manager/task_list.html" %}
+    {% else %}
+      {% load crispy_forms_filters %}
+      {% load crispy_forms_tags %}
+
+      <div class="col-lg-1"></div>
+
+      <div class="col-lg-4">
+        <form class="form-signin center-block" method="post" novalidate>
+          {% csrf_token %}
+          {{ form|crispy }}
+          <br>
+          <button class="btn btn-group-xs btn-success btn-block" type="submit">Sign in</button>
+        </form>
+      </div>
+
+      <div class="col-lg-2"></div>
+
+      <div class="col-lg-5 justify">
+        <p class="text-justify" style="text-indent: 25px;" ><i class="fa fa-trophy">
+          This application is designed for companies or departments with a small number of employees.
+          The application allows you to control the process of execution and deadline tasks.
+          Intuitive sorting and searching allows you to quickly find the task you need and make changes.</i>
+        </p>
+        <p class="text-justify" style="text-indent: 25px;"><i class="fa fa-trophy">
+          The application does not provide for user registration, the password is issued by the administrator
+          when the user becomes an employee of the company. Since this application is a demo, access keys are issued.
+          The username will be a lowercase string of the user's first and last name separated by a dot.</i>
+        </p>
+      </div>
+
+    {% endif %}
+  </div>
+
+{% endblock %}

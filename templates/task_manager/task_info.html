@@ -1,0 +1,37 @@
+{% block task_info %}
+
+  <div class="panel-heading">
+    <a href="{% url 'task_manager:task-detail' pk=task.id %}"><h4>{{ task.name }}</h4></a>
+  </div>
+
+  <div class="panel-body">
+    Priority: {{ task.priority }}<br>
+    Deadline: {{ task.deadline }}
+  </div>
+
+  <div class="panel-footer">
+    <div class="btn-group" role="group">
+      <div class="btn-group-vertical text-left" role="group" style="margin-left: 6px">
+        <button class="btn btn-secondary dropdown-toggle " type="button" data-toggle="dropdown">
+          Assignees <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+          {% for worker in task.assignees.all %}
+          <li><a class="dropdown-item" href="{% url 'task_manager:task-update' pk=task.id %}">
+            {{ worker.first_name }} {{ worker.last_name }} {{ worker.position }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+
+      <div class="btn-group text-right" role="group" style="margin-left: 7px">
+        <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown">
+          Description <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+          <li><p>{{ task.description }}</p></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}

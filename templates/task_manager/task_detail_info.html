@@ -1,0 +1,96 @@
+{% block task_info %}
+
+  <div class="panel-heading">
+    <h3>{{ task.name }}</h3>
+  </div>
+
+  <div class="panel-body">
+    <h4>Detail:</h4>
+    <div class="justify-content-lg-center">
+      <table class="table">
+        <tr>
+          <th class="text-center">ID</th>
+          <th class="text-center">Status</th>
+          <th class="text-center">Priority</th>
+          <th class="text-center">Deadline</th>
+          <th class="text-center">Created</th>
+          <th class="text-center">Task type</th>
+        </tr>
+        <tr>
+          <td class="text-center">{{ task.id }}</td>
+          <td class="text-center">{{ task.status}}</td>
+          <td class="text-center">{{ task.priority }}</td>
+          <td class="text-center">{{ task.deadline }}</td>
+          <td class="text-center">{{ task.created_at }}</td>
+          <td class="text-center">{{ task.task_type }}</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div class="panel-footer">
+    <div class="justify-content-lg-center">
+      <h4>Description: {{ task.description }}</h4>
+    </div>
+  </div>
+  <div class="panel-body bg-secondary">
+    <div class="justify-content-lg-center">
+      <h4>Employees:</h4>
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th class="text-center">ID</th>
+            <th class="text-center">Username</th>
+            <th class="text-center">Fool name</th>
+            <th class="text-center">Email</th>
+            <th class="text-center">Position</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for worker in task.assignees.all %}
+            <tr>
+              <td class="text-center">{{ worker.id }}</td>
+              <td class="text-center">{{ worker.username }}</td>
+              <td class="text-center">{{ worker.first_name }} {{ worker.last_name }}</td>
+              <td class="text-center">{{ worker.email }}</td>
+              <td class="text-center">{{ worker.position }}</td>
+            </tr>
+          {% endfor %}
+        <tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="panel-footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-3">
+          <a href="{% url 'task_manager:task-delete' pk=task.id %}" class="btn btn-info btn-md btn-block">
+            Delete task
+          </a>
+        </div>
+        <div class="col-sm-3">
+          <a href="{% url 'task_manager:task-update' pk=task.id %}" class="btn btn-warning btn-md btn-block">
+            Update task
+          </a>
+        </div>
+        <div class="col-sm-3">
+          <a style="float: right" class="btn btn-primary btn-md btn-block" href="{% url 'task_manager:task-create' %}">
+            Add task
+          </a>
+        </div>
+        <div class="col-sm-3">
+          {% if task in user.tasks.all %}
+            <a href="{% url 'task_manager:toggle-task-assign' pk=task.id %}" class="btn btn-danger btn-md btn-block">
+              Delete me from this task
+            </a>
+          {% else %}
+            <a href="{% url 'task_manager:toggle-task-assign' pk=task.id %}" class="btn btn-success btn-md btn-block">
+              Assign me to this task
+            </a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}

@@ -1,0 +1,26 @@
+{% block in_progress %}
+
+  <div>
+    {% if task.priority == "No priority" %}
+      <div class="panel panel-default">
+        {% include "task_manager/task_info.html" %}
+      </div>
+
+    {% elif task.priority == "Low" %}
+      <div class="panel panel-info">
+        {% include "task_manager/task_info.html" %}
+      </div>
+
+    {% elif task.priority == "Normal" %}
+      <div class="panel panel-warning">
+        {% include "task_manager/task_info.html" %}
+      </div>
+
+    {% elif task.priority == "Urgent" %}
+      <div class="panel panel-danger">
+        {% include "task_manager/task_info.html" %}
+      </div>
+    {% endif %}
+  </div>
+
+{% endblock %}

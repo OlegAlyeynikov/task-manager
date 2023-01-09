@@ -1,0 +1,39 @@
+{% block sidebar_login %}
+
+  <div class="container-fluid">
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="{% url 'task_manager:task-list' %}">Task<i class="fa fa-circle"></i>MANAGE</a>
+        </div>
+
+        <div class="navbar-collapse collapse">
+          {% if user.is_authenticated %}
+            <form class="navbar-right">
+              <div class="form-group">
+                <a class="navbar-brand" href="{% url 'task_manager:worker-detail' %}">{{ user.username }}</a>
+                <a class="navbar-brand" href="{% url 'logout' %}">logout</a>
+              </div>
+            </form>
+            {% if task_list %}
+              <form  class="navbar-form center-block" role="search">
+                <div class="form-group">
+                  {% load crispy_forms_filters %}
+                  {{ search_form|crispy }}
+                </div>
+                <button type="submit" class="btn btn-success">Search</button>
+              </form>
+            {% endif %}
+          {% endif %}
+        </div>
+
+      </div>
+    </div>
+  </div>
+{% endblock %}

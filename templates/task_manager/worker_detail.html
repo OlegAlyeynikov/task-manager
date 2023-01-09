@@ -1,0 +1,88 @@
+{% include "base.html" %}
+
+{% block content %}
+  <div class="container">
+    <div class="row centered">
+      <div class="col-lg-3">
+        <i class="fa fa-trophy">
+          <div class="panel panel-default"><div class="panel-heading">
+            <h2 class="text-center">Not started</h2>
+          </div></div>
+          {% if task_list %}
+            {% for task in task_list %}
+              {% if task.status == "Not started" %}
+                  {% for worker in task.assignees.all %}
+                    {% if user.id == worker.id %}
+                      {% include "task_manager/task_not_started.html" %}
+                    {% endif %}
+                  {% endfor %}
+              {% endif %}
+            {% endfor %}
+          {% endif %}
+        </i>
+      </div>
+
+      <div class="col-lg-3">
+        <i class="fa fa-trophy">
+          <div class="panel panel-default"><div class="panel-heading">
+            <h2 class="text-center">In progress</h2>
+          </div></div>
+          {% if task_list %}
+              {% for task in task_list %}
+                {% if task.status == "In progress" %}
+                  {% for worker in task.assignees.all %}
+                    {% if user.id == worker.id %}
+                      {% include "task_manager/task_in_progress.html" %}
+                    {% endif %}
+                  {% endfor %}
+                {% endif %}
+              {% endfor %}
+          {% endif %}
+          </i>
+      </div>
+
+      <div class="col-lg-3">
+        <i class="fa fa-trophy">
+          <div class="panel panel-default"><div class="panel-heading">
+            <h2 class="text-center">On review</h2>
+          </div></div>
+          {% if task_list %}
+            {% for task in task_list %}
+              {% if task.status == "On review" %}
+                {% for worker in task.assignees.all %}
+                  {% if user.id == worker.id %}
+                    {% include "task_manager/task_on_review.html" %}
+                  {% endif %}
+                {% endfor %}
+              {% endif %}
+            {% endfor %}
+          {% endif %}
+        </i>
+      </div>
+
+      <div class="col-lg-3">
+        <i class="fa fa-trophy">
+          <div class="panel panel-default"><div class="panel-heading">
+            <h2 class="text-center">Completed</h2>
+          </div></div>
+          {% if task_list %}
+            {% for task in task_list %}
+              {% if task.status == "Completed" %}
+                {% for worker in task.assignees.all %}
+                  {% if user.id == worker.id %}
+                    {% include "task_manager/task_completed.html" %}
+                  {% endif %}
+                {% endfor %}
+              {% endif %}
+            {% endfor %}
+          {% endif %}
+        </i>
+      </div>
+
+    </div>
+  </div>
+  <br>
+
+  <div class="panel-footer position-fixed fixed-bottom"></div>
+
+{% endblock %}
