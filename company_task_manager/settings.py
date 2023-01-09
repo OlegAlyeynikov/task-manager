@@ -40,7 +40,7 @@ SECRET_KEY = os.environ["DJANGO_SECRET_KEY"]
 # DEBUG = os.environ.get("DEBUG")
 DEBUG = os.environ.get("DEBUG", "") != "False"
 
-ALLOWED_HOSTS = ["127.0.0.1"]
+ALLOWED_HOSTS = ["127.0.0.1", "task-manager-qvcx.onrender.com"]
 
 
 # Application definition
