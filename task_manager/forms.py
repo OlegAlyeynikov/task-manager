@@ -1,3 +1,4 @@
+import pytz as pytz
 from django import forms
 from django.contrib.auth import get_user_model, password_validation
 from django.core import exceptions
@@ -25,6 +26,8 @@ class WorkerLoginForm(forms.Form, BaseForm):
 
 
 class WorkerRegisterForm(forms.ModelForm, BaseForm):
+    TIMEZONE_CHOICES = zip(pytz.all_timezones, pytz.all_timezones)
+
     password1 = forms.CharField(label="Password", widget=forms.PasswordInput)
 
     password2 = forms.CharField(label="Confirm password", widget=forms.PasswordInput)
