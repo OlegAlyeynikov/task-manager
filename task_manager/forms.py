@@ -26,7 +26,7 @@ class WorkerLoginForm(forms.Form, BaseForm):
 
 
 class WorkerRegisterForm(forms.ModelForm, BaseForm):
-    TIMEZONE_CHOICES = zip(pytz.all_timezones, pytz.all_timezones)
+    TIME_ZONE_CHOICES = zip(pytz.all_timezones, pytz.all_timezones)
 
     password1 = forms.CharField(label="Password", widget=forms.PasswordInput)
 
