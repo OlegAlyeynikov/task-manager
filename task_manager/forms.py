@@ -26,17 +26,14 @@ class WorkerLoginForm(forms.Form, BaseForm):
 
 
 class WorkerRegisterForm(forms.ModelForm, BaseForm):
-    TIME_ZONE_CHOICES = zip(pytz.all_timezones, pytz.all_timezones)
 
     password1 = forms.CharField(label="Password", widget=forms.PasswordInput)
 
     password2 = forms.CharField(label="Confirm password", widget=forms.PasswordInput)
 
-    time_zone = forms.ChoiceField(label="Time zone", choices=enums.TIME_ZONE_CHOICES)
-
     class Meta:
         model = Worker
-        fields = ["username", "email", "position", "time_zone"]
+        fields = ["username", "email", "position"]
 
     def clean(self):
         """
