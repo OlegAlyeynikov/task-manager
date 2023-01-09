@@ -32,7 +32,7 @@ if os.path.isfile(dotenv_file):
     dotenv.load_dotenv(dotenv_file)
 
 # UPDATE secret key
-SECRET_KEY = os.environ["SECRET_KEY"]
+SECRET_KEY = os.environ["DJANGO_SECRET_KEY"]
 # Instead of your actual secret key
 
 # SECURITY WARNING: don't run with debug turned on in production!
