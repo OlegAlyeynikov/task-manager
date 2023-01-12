@@ -1,6 +1,6 @@
 # Task Manager
 
-Django project for managing tasks for small company or department.
+Django project for managing tasks for small companies or departments.
 
 ## Description
 
